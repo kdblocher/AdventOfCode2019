@@ -1,7 +1,5 @@
-module Day1 (massToFuel, processPart1) where
+module Day1 (massToFuel, massToFuel2, part1, part2, process, Part) where
 import Core
-import Data.Int
-import Data.Foldable
 import Flow
 
 {-
@@ -24,13 +22,37 @@ The Fuel Counter-Upper needs to know the total fuel requirement. To find it, ind
 What is the sum of the fuel requirements for all of the modules on your spacecraft?
 -}
 
-part1 :: [Mass] -> Fuel
-part1 = sum . map massToFuel
+type Part = Mass -> Fuel
 
-processPart1 :: PartProcessor
-processPart1 =
+process :: Part -> PartProcessor
+process part =
   lines
   .> map readInt
-  .> part1
+  .> (sum . map part)
   .> show
   where readInt = read :: (String -> Int)
+
+part1 :: Part
+part1 = massToFuel
+
+{-
+During the second Go / No Go poll, the Elf in charge of the Rocket Equation Double-Checker stops the launch sequence. Apparently, you forgot to include additional fuel for the fuel you just added.
+
+Fuel itself requires fuel just like a module - take its mass, divide by three, round down, and subtract 2. However, that fuel also requires fuel, and that fuel requires fuel, and so on. Any mass that would require negative fuel should instead be treated as if it requires zero fuel; the remaining mass, if any, is instead handled by wishing really hard, which has no mass and is outside the scope of this calculation.
+
+So, for each module mass, calculate its fuel and add it to the total. Then, treat the fuel amount you just calculated as the input mass and repeat the process, continuing until a fuel requirement is zero or negative.
+-}
+
+massToFuel2 :: Mass -> Fuel
+massToFuel2 m
+  | m < 9     = 0
+  | otherwise =
+    let result = massToFuel m
+    in result + massToFuel2 result
+
+{-
+What is the sum of the fuel requirements for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)
+-}
+
+part2 :: Part
+part2 = massToFuel2

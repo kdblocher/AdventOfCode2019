@@ -1,14 +1,15 @@
 module Main where
 
 import Day1
+import Control.Applicative
 import Control.Monad
 import Flow
 
-run :: FilePath -> IO ()
-run =
+run :: Part -> FilePath -> IO ()
+run part =
   readFile
-  >=> processPart1 .> return
+  >=> process part .> return
   >=> putStrLn
 
 main :: IO ()
-main = run "input/day1.txt"
+main = liftA2 (>>) (run part1) (run part2) "input/day1.txt"

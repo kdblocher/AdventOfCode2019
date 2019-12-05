@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ab24cdc86dcaa0881ea8c2c6573f8a2bec5e7add21a124f41edfa8d7942fa5dd
+-- hash: e1aac8901fe8651611f64e9b6b563b3934775ca227966a30e95f96009e021472
 
 name:           adventofcode2019
 version:        0.1.0.0
@@ -16,9 +16,6 @@ maintainer:     example@example.com
 copyright:      2019 Author name here
 license:        BSD3
 build-type:     Simple
-extra-source-files:
-    README.md
-    ChangeLog.md
 
 source-repository head
   type: git
