@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e1aac8901fe8651611f64e9b6b563b3934775ca227966a30e95f96009e021472
+-- hash: 1e052e97413d587fed7e1dd9b615a4b46f1b8436bf530b13f271ebe6dcef0014
 
 name:           adventofcode2019
 version:        0.1.0.0
@@ -25,15 +25,18 @@ library
   exposed-modules:
       Core
       Day1
+      Day2
   other-modules:
       Paths_adventofcode2019
   hs-source-dirs:
       src
   build-depends:
       QuickCheck
+    , array
     , base >=4.7 && <5
     , flow
     , hspec
+    , monad-loops
   default-language: Haskell2010
 
 executable adventofcode2019-exe
@@ -46,9 +49,11 @@ executable adventofcode2019-exe
   build-depends:
       QuickCheck
     , adventofcode2019
+    , array
     , base >=4.7 && <5
     , flow
     , hspec
+    , monad-loops
   default-language: Haskell2010
 
 test-suite adventofcode2019-test
@@ -56,6 +61,7 @@ test-suite adventofcode2019-test
   main-is: Spec.hs
   other-modules:
       Day1Spec
+      Day2Spec
       Paths_adventofcode2019
   hs-source-dirs:
       test
@@ -63,7 +69,9 @@ test-suite adventofcode2019-test
   build-depends:
       QuickCheck
     , adventofcode2019
+    , array
     , base >=4.7 && <5
     , flow
     , hspec
+    , monad-loops
   default-language: Haskell2010

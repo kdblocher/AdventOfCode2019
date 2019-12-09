@@ -20,6 +20,8 @@ dependencies:
 - hspec
 - QuickCheck
 - flow
+- array
+- monad-loops
 
 library:
   source-dirs: src
